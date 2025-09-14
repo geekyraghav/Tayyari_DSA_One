@@ -3,14 +3,28 @@ import java.util.*;
 public class VivekTheRobber {
     public int findMaxSum(int arr[]) {
         int n = arr.length;
-        int[] dp = new int[n];
+        int[] dp = new int[3];
         dp[0] = arr[0];
         if(n>1) dp[1] = Math.max(arr[0],arr[1]);
         for(int i=2;i<n;i++){
-            dp[i] = Math.max(arr[i]+dp[i-2],dp[i-1]);
+            dp[2] = Math.max(arr[i]+dp[0],dp[1]);
+            dp[0] = dp[1];
+            dp[1] = dp[2];
         }
-        return dp[n-1];
+        return dp[2];
     }
+
+//    public int findMaxSum(int arr[]) {
+//        int n = arr.length;
+//        int[] dp = new int[n];
+//        dp[0] = arr[0];
+//        if(n>1) dp[1] = Math.max(arr[0],arr[1]);
+//        for(int i=2;i<n;i++){
+//            dp[i] = Math.max(arr[i]+dp[i-2],dp[i-1]);
+//        }
+//        return dp[n-1];
+//    }
+
 //    static int[] dp;
 //    public int findMaxSum(int arr[]) {
 //        int n = arr.length;
